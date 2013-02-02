@@ -4,11 +4,13 @@ import sbt._
 import Keys._
 
 object SiteGenerationPlugin extends Plugin {
-  override lazy val settings = Seq(commands += createSiteCommand)
 
-  lazy val createSiteCommand =
-    Command.command("create-site") { (state: State) =>
-      println("Creating Hyde template site")
+  override lazy val settings = Seq(commands += generateSiteCommand)
+
+  lazy val generateSiteCommand =
+    Command.command("generate-site") { (state: State) =>
+      println("Generating Hyde template site...")
+      new HtmlSiteGenerator().generate(new Site(title = "Test"))
       state
     }
 
