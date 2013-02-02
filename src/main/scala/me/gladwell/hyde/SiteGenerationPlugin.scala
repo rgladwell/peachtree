@@ -7,10 +7,11 @@ object SiteGenerationPlugin extends Plugin {
 
   override lazy val settings = Seq(commands += generateSiteCommand)
 
-  lazy val generateSiteCommand =
+  lazy val generateSiteCommand : Command =
     Command.command("generate-site") { (state: State) =>
       println("Generating Hyde template site...")
-      new HtmlSiteGenerator().generate(new Site(title = "Test"))
+      def title = description in Project.extract(state).currentRef get Project.extract(state).structure.data
+      new HtmlSiteGenerator().generate(new Site(title = title.get))
       state
     }
 
