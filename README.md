@@ -1,4 +1,4 @@
-hyde
+Hyde
 ====
 
-Jekyll-like web site generator written in Scala.
+Scala-based static site generator based on Jekyll.
