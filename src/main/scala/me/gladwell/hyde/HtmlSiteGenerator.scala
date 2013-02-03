@@ -2,14 +2,13 @@ package me.gladwell.hyde
 
 import java.io.File
 import scala.xml._
-import sbt.IO.createDirectory
 
 class HtmlSiteGenerator extends SiteGenerator {
 
-  def generate(site: Site): Unit = {
+  def generate(output: File, site: Site): Unit = {
     for(page <- site.pages) {
-      createDirectory(new File("project/target/hyde/site"))
-      XML.save("project/target/hyde/site/" + page.id + ".html",
+      def file = new File(output, page.id + ".html")
+      XML.save(file.getAbsolutePath(),
         <html>
           <head>
             <title>{site.title}</title>
