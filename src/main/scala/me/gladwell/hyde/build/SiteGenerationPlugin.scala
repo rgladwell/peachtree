@@ -6,17 +6,19 @@ import me.gladwell.hyde._
 
 object SiteGenerationPlugin extends Plugin {
 
-  override lazy val settings = Seq(commands += generateSiteCommand)
+  val Configuration = config("hyde")
 
-  lazy val generateSiteCommand : Command =
-    Command.command("generate-site") { (state: State) =>
-      def title = new SiteSetting(description, state).get()
+  val generateSiteTask = TaskKey[Unit]("generate-site", "generate static Hyde site")
 
-      println("Generating Hyde template site... " + title.get)
+  override lazy val settings = inConfig(Configuration)(
+    Seq(
+      generateSiteTask <<= (description) map { description => 
+        println("Generating Hyde template site... " + description)
 
-      def site = new Site(title = title.get)
-      new HtmlSiteGenerator().generate(site)
-      state
-    }
+        def site = new Site(title = description)
+        new HtmlSiteGenerator().generate(site)
+      }
+    )
+  )
 
 }
