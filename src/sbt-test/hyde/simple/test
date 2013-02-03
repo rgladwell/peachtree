@@ -1,3 +1,5 @@
 # should generate index html file
 > generate-site
 $ exists project/target/hyde/site/index.html
+> verify-index-html-title
+> verify-index-html-h1
