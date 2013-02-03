@@ -9,15 +9,18 @@ object SiteGenerationPlugin extends Plugin {
 
   val Configuration = config("hyde")
 
-  val siteDirectory = SettingKey[File]("site-directory")
+  val siteTitle = SettingKey[String]("site-title", "Title of static site.")
+  val siteDirectory = SettingKey[File]("site-directory", "Directory for generating static site content.")
 
   val generateSiteTask = TaskKey[Unit]("generate-site", "generate static Hyde site")
 
   override lazy val settings = inConfig(Configuration)(
     Seq(
+      siteTitle <<= description,
+
       siteDirectory <<= target.apply(new File(_, "hyde/site")),
 
-      generateSiteTask <<= (description, siteDirectory) map { (title, output) =>
+      generateSiteTask <<= (siteTitle, siteDirectory) map { (title, output) =>
         println("Generating Hyde template site... " + title) 
         println("Generating Hyde template site in " + output)
 
