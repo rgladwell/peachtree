@@ -2,6 +2,6 @@ package me.gladwell.hyde
 
 import java.io.File
 
-trait SiteGenerator {
+private trait SiteGenerator {
   def generate(output: File, site: Site)
 }

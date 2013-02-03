@@ -26,7 +26,7 @@ object SiteGenerationPlugin extends Plugin {
 
         createDirectory(output)
         def site = new Site(title = title)
-        new HtmlSiteGenerator().generate(output, site)
+        generateSite(output, site)
       }
     )
   )

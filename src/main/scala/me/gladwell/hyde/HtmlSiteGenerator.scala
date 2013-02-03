@@ -3,7 +3,7 @@ package me.gladwell.hyde
 import java.io.File
 import scala.xml._
 
-class HtmlSiteGenerator extends SiteGenerator {
+private class HtmlSiteGenerator extends SiteGenerator {
 
   def generate(output: File, site: Site): Unit = {
     for(page <- site.pages) {
