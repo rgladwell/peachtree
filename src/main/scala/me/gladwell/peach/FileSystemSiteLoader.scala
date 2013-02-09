@@ -2,12 +2,13 @@ package me.gladwell.peach
 
 import java.io.File
 import scala.io.Source
-
 import dispatch.json.JsonParser
 import me.gladwell.peach.pages.JSONPageProtocol._
 import sjson.json.JsonSerialization._
+import me.gladwell.peach.pages.PageWriter
 
-private class FileSystemSiteLoader extends SiteLoader[File] {
+trait FileSystemSiteLoader extends SiteLoader[File] {
+  this: PageWriter =>
 
   def load(info: SiteInfo, source: File): Site = {
     println("loading pages from " + source)
@@ -30,7 +31,7 @@ private class FileSystemSiteLoader extends SiteLoader[File] {
 
   private def createNewTemplateSite(info: SiteInfo, source: File): Site = {
     val site = new Site(title = info.title)
-    site.pages.foreach { page => createPage(source, page.id) }
+    site.pages.foreach { page => write(source, page) }
     site
   }
 }

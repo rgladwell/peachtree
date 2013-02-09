@@ -5,6 +5,6 @@ import java.io.File
 
 trait PageWriter {
 
-  def createPage(file: File, page: Page)
+  def write(file: File, page: Page)
 
 }

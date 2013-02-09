@@ -3,10 +3,15 @@ package me.gladwell.peach.build
 import sbt._
 import sbt.IO.createDirectory
 import Keys._
-
 import me.gladwell.peach._
+import me.gladwell.peach.pages.JSONPageWriter
 
 object SiteGenerationPlugin extends Plugin {
+
+  object peachTree extends PeachTree[File]
+                          with HtmlSiteGenerator
+                          with FileSystemSiteLoader
+                          with JSONPageWriter
 
   val Configuration = config("peach")
 
@@ -35,8 +40,8 @@ object SiteGenerationPlugin extends Plugin {
 
         createDirectory(source)
         createDirectory(output)
-        def site = loadSite(new SiteInfo(title = title), source)
-        generateSite(output, site)
+        def site = peachTree.loadSite(new SiteInfo(title = title), source)
+        peachTree.generateSite(output, site)
       },
 
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
@@ -44,7 +49,7 @@ object SiteGenerationPlugin extends Plugin {
           createDirectory(output)
           args foreach (page => {
             println("Creating page '" + page + "' in " + output)
-            createPage(output, page)
+            peachTree.createPage(output, page)
           })
         }
       }

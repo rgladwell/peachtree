@@ -10,9 +10,9 @@ import dispatch.json._
 
 import JSONPageProtocol._
 
-class JSONPageWriter extends PageWriter {
+trait JSONPageWriter extends PageWriter {
 
-  def createPage(outputDirectory: File, page: Page): Unit = {
+  def write(outputDirectory: File, page: Page): Unit = {
     val json = tojson[Page](page)
     val pageFile = new File(outputDirectory, page.id + ".page")
     println("writing page to " + pageFile)

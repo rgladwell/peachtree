@@ -3,7 +3,7 @@ package me.gladwell.peach
 import java.io.File
 import scala.xml._
 
-private class HtmlSiteGenerator extends SiteGenerator {
+trait HtmlSiteGenerator extends SiteGenerator {
 
   def generate(output: File, site: Site): Unit = {
     for(page <- site.pages) {
