@@ -36,11 +36,7 @@ object SiteGenerationPlugin extends Plugin {
         createDirectory(source)
         createDirectory(target)
 
-        val peachTree = new PeachTree(source, target)
-                                with HtmlSiteGenerator
-                                with FileSystemSiteLoader
-                                with JSONPageWriter
-
+        val peachTree = PeachTree(source, target)
         def site = peachTree.loadSite(new SiteInfo(title = title))
         peachTree generate site
       },
@@ -49,10 +45,7 @@ object SiteGenerationPlugin extends Plugin {
         (argTask, pagesDirectory, siteDirectory) map { (args: Seq[String], source, target) =>
           createDirectory(source)
 
-          val peachTree = new PeachTree(source, target)
-                                  with HtmlSiteGenerator
-                                  with FileSystemSiteLoader
-                                  with JSONPageWriter
+          val peachTree = PeachTree(source, target)
 
           args foreach (page => {
             println("Creating page '" + page + "' in " + source)
