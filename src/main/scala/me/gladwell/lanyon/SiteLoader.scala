@@ -1,4 +1,4 @@
-package me.gladwell.hyde
+package me.gladwell.lanyon
 
 trait SiteLoader[S] {
 

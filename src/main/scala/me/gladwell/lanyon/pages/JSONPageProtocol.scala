@@ -1,7 +1,7 @@
-package me.gladwell.hyde.pages
+package me.gladwell.lanyon.pages
 
 import sjson.json.Format
-import me.gladwell.hyde.Page
+import me.gladwell.lanyon.Page
 import sjson.json.DefaultProtocol
 
 object JSONPageProtocol extends DefaultProtocol {

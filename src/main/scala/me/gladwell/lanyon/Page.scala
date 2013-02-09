@@ -1,4 +1,4 @@
-package me.gladwell.hyde
+package me.gladwell.lanyon
 
 class Page(val id: String) {
 

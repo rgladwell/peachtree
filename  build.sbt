@@ -1,6 +1,6 @@
 sbtPlugin := true
 
-name := "hyde"
+name := "lanyon"
 
 description := "Scala-based static site generator based on Jekyll"
 

@@ -1,9 +1,9 @@
 package me.gladwell
 
 import java.io.File
-import me.gladwell.hyde.pages.JSONPageWriter
+import me.gladwell.lanyon.pages.JSONPageWriter
 
-package object hyde {
+package object lanyon {
 
   private val siteGenerator = new HtmlSiteGenerator()
   private val pageWriter = new JSONPageWriter()

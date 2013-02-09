@@ -1,5 +1,5 @@
-Hyde
-====
+Lanyon
+======
 
 Scala-based static site generator based on Jekyll.
 
@@ -13,18 +13,17 @@ Installation
 
 Add the following lines to ~/.sbt/plugins/build.sbt or PROJECT_DIR/project/plugins.sbt
 
-    addSbtPlugin("me.gladwell" % "hyde" % "0.1-SNAPSHOT")
+    addSbtPlugin("me.gladwell" % "lanyon" % "0.1-SNAPSHOT")
 
 Usage
 -----
 
-Use the `hyde:generate-site` sbt command to create your static site in the `project/target/hyde/site`
-folder.
+Use the `lanyon:generate-site` sbt command to create your static site in the `project/target/lanyon/site` folder.
 
-To create a basic page use the `hyde:add-page <page>` sbt command as follows:
+To create a basic page use the `lanyon:add-page <page>` sbt command as follows:
 
-    > hyde:add-page about
-    > hyde:generate-site
+    > lanyon:add-page about
+    > lanyon:generate-site
 
-This should create a new `about.page` file in `src/main/hyde/pages` and a new `about.html` HTML file
-in the project/target/hyde/site` folder.
+This should create a new `about.page` file in `src/main/lanyon/pages` and a new `about.html` HTML file
+in the project/target/lanyon/site` folder.

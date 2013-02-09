@@ -1,4 +1,4 @@
-package me.gladwell.hyde
+package me.gladwell.lanyon
 
 import java.io.File
 import scala.xml._

@@ -1,9 +1,9 @@
-package me.gladwell.hyde.pages
+package me.gladwell.lanyon.pages
 
 import java.io.File
 import java.io.FileWriter
 
-import me.gladwell.hyde.Page
+import me.gladwell.lanyon.Page
 import sjson.json.Writes
 import sjson.json.JsonSerialization._
 import dispatch.json._
