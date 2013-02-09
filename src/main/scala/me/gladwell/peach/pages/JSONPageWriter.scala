@@ -1,9 +1,9 @@
-package me.gladwell.lanyon.pages
+package me.gladwell.peach.pages
 
 import java.io.File
 import java.io.FileWriter
 
-import me.gladwell.lanyon.Page
+import me.gladwell.peach.Page
 import sjson.json.Writes
 import sjson.json.JsonSerialization._
 import dispatch.json._

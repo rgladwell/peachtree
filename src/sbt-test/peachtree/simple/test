@@ -1,0 +1,14 @@
+# should generate default index html file
+> peach:generate-site
+$ exists target/peach/site/
+$ exists target/peach/site/index.html
+$ exists src/main/peach/pages
+$ exists src/main/peach/pages/index.page
+> verify-index-html-title
+> verify-index-html-h1
+
+# should create new pages
+> peach:add-page about
+$ exists src/main/peach/pages/about.page
+> peach:generate-site
+$ exists target/peach/site/about.html

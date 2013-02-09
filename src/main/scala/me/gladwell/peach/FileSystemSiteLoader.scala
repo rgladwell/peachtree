@@ -1,10 +1,10 @@
-package me.gladwell.lanyon
+package me.gladwell.peach
 
 import java.io.File
 import scala.io.Source
 
 import dispatch.json.JsonParser
-import me.gladwell.lanyon.pages.JSONPageProtocol._
+import me.gladwell.peach.pages.JSONPageProtocol._
 import sjson.json.JsonSerialization._
 
 private class FileSystemSiteLoader extends SiteLoader[File] {

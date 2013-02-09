@@ -1,7 +1,7 @@
-package me.gladwell.lanyon.pages
+package me.gladwell.peach.pages
 
 import sjson.json.Format
-import me.gladwell.lanyon.Page
+import me.gladwell.peach.Page
 import sjson.json.DefaultProtocol
 
 object JSONPageProtocol extends DefaultProtocol {

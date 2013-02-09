@@ -1,6 +1,6 @@
-package me.gladwell.lanyon.pages
+package me.gladwell.peach.pages
 
-import me.gladwell.lanyon.Page
+import me.gladwell.peach.Page
 import java.io.File
 
 trait PageWriter {
