@@ -7,7 +7,7 @@ import me.gladwell.peach.pages.JSONPageProtocol._
 import sjson.json.JsonSerialization._
 import me.gladwell.peach.pages.PageWriter
 
-trait FileSystemSiteLoader extends SiteLoader[File] {
+trait FileSystemSiteLoader extends SiteLoader {
   this: PageWriter =>
 
   def load(info: SiteInfo, source: File): Site = {

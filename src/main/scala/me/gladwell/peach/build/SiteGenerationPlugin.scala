@@ -8,11 +8,6 @@ import me.gladwell.peach.pages.JSONPageWriter
 
 object SiteGenerationPlugin extends Plugin {
 
-  object peachTree extends PeachTree[File]
-                          with HtmlSiteGenerator
-                          with FileSystemSiteLoader
-                          with JSONPageWriter
-
   val Configuration = config("peach")
 
   val siteTitle = SettingKey[String]("site-title", "Title of Peach Tree static site.")
@@ -34,22 +29,34 @@ object SiteGenerationPlugin extends Plugin {
 
       pagesDirectory <<= peachSourceDirectory.apply(new File(_, "pages")),
 
-      generateSiteTask <<= (siteTitle, siteDirectory, pagesDirectory) map { (title, output, source) =>
+      generateSiteTask <<= (siteTitle, pagesDirectory, siteDirectory) map { (title, source, target) =>
         println("Generating Peach Tree template site... " + title)
-        println("Generating Peach Tree template site in " + output)
+        println("Generating Peach Tree template site in " + target)
 
         createDirectory(source)
-        createDirectory(output)
-        def site = peachTree.loadSite(new SiteInfo(title = title), source)
-        peachTree.generateSite(output, site)
+        createDirectory(target)
+
+        val peachTree = new PeachTree(source, target)
+                                with HtmlSiteGenerator
+                                with FileSystemSiteLoader
+                                with JSONPageWriter
+
+        def site = peachTree.loadSite(new SiteInfo(title = title))
+        peachTree generate site
       },
 
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
-        (argTask, pagesDirectory) map { (args: Seq[String], output) =>
-          createDirectory(output)
+        (argTask, pagesDirectory, siteDirectory) map { (args: Seq[String], source, target) =>
+          createDirectory(source)
+
+          val peachTree = new PeachTree(source, target)
+                                  with HtmlSiteGenerator
+                                  with FileSystemSiteLoader
+                                  with JSONPageWriter
+
           args foreach (page => {
-            println("Creating page '" + page + "' in " + output)
-            peachTree.createPage(output, page)
+            println("Creating page '" + page + "' in " + source)
+            peachTree create page
           })
         }
       }

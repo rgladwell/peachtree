@@ -1,7 +1,9 @@
 package me.gladwell.peach
 
-trait SiteLoader[S] {
+import java.io.File
 
-  def load(info: SiteInfo, source: S): Site
+trait SiteLoader {
+
+  def load(info: SiteInfo, source: File): Site
 
 }
