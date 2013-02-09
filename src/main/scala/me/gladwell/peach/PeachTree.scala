@@ -7,8 +7,11 @@ import me.gladwell.peach.pages.JSONPageWriter
 class PeachTree(source: File, target: File) {
   this: SiteGenerator with SiteLoader with PageWriter =>
 
-  def generate(site: Site): Unit = generate(target, site)
-  def loadSite(info: SiteInfo) : Site = load(info, source)
+  def generate(info: SiteInfo): Unit = {
+    val site = load(info, source)
+    generate(target, site)
+  }
+
   def create(page: String) = write(source, new Page(id = page))
 
 }

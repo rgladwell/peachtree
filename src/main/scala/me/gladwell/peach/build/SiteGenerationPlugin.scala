@@ -36,9 +36,7 @@ object SiteGenerationPlugin extends Plugin {
         createDirectory(source)
         createDirectory(target)
 
-        val peachTree = PeachTree(source, target)
-        def site = peachTree.loadSite(new SiteInfo(title = title))
-        peachTree generate site
+        PeachTree(source, target) generate new SiteInfo(title = title)
       },
 
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
