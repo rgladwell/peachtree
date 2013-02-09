@@ -11,17 +11,11 @@ trait FileSystemSiteLoader extends SiteLoader {
   this: PageWriter =>
 
   def load(info: SiteInfo, source: File): Site = {
-    println("loading pages from " + source)
-    if(source.listFiles() == null) createNewTemplateSite(info, source)
-    else {
-      println("loading pages 2 from " + source.listFiles())
-      val pages = for {
-        file <- source.listFiles()
-        if !file.isDirectory() && file.getName().endsWith(".page")
-      } yield file
-      if(pages.length != 0) new Site(title = info.title, pages = pages.map(loadPage(_)))
-      else createNewTemplateSite(info, source)
-    }
+    val pages = for {
+      file <- source.listFiles()
+      if !file.isDirectory() && file.getName().endsWith(".page")
+    } yield file
+    new Site(title = info.title, pages = pages.map(loadPage(_)))
   }
 
   private def loadPage(file: File): Page = {
@@ -29,9 +23,4 @@ trait FileSystemSiteLoader extends SiteLoader {
     frombinary[Page](Source.fromFile(file).mkString.getBytes())
   }
 
-  private def createNewTemplateSite(info: SiteInfo, source: File): Site = {
-    val site = new Site(title = info.title)
-    site.pages.foreach { page => write(source, page) }
-    site
-  }
 }

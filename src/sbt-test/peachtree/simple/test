@@ -2,8 +2,6 @@
 > peach:generate-site
 $ exists target/peach/site/
 $ exists target/peach/site/index.html
-$ exists src/main/peach/pages
-$ exists src/main/peach/pages/index.page
 > verify-index-html-title
 > verify-index-html-h1
 
