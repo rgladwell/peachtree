@@ -2,8 +2,8 @@ package me.gladwell.peach.pages
 
 import java.io.File
 
-trait PageWriter {
+trait PageLoader {
 
-  def write(file: File, page: Page)
+  def load(file: File): Page
 
 }

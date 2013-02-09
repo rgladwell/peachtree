@@ -7,7 +7,7 @@ trait HtmlSiteGenerator extends SiteGenerator {
 
   def generate(output: File, site: Site): Unit = {
     for(page <- site.pages) {
-      def file = new File(output, page.id + ".html")
+      def file = new File(output, page.path + ".html")
       XML.save(file.getAbsolutePath(),
         <html>
           <head>
