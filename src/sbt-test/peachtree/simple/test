@@ -2,11 +2,11 @@
 > peach:generate-site
 $ exists target/peach/site/
 $ exists target/peach/site/index.html
-> verify-index-html-title
-> verify-index-html-h1
+> assert-page-title index BLOG_TITLE
 
 # should create new pages
-> peach:add-page about
-$ exists src/main/peach/pages/about.page
+> peach:add-page page1 "PAGE1 TITLE"
+$ exists src/main/peach/pages/page1.page
 > peach:generate-site
-$ exists target/peach/site/about.html
+$ exists target/peach/site/page1.html
+> assert-page-title page1 "PAGE1 TITLE"

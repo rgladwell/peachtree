@@ -11,6 +11,7 @@ trait FileSystemSiteLoader extends SiteLoader {
       file <- source.listFiles()
       if !file.isDirectory() && file.getName().endsWith(".page")
     } yield file
+
     new Site(title = info.title, pages = pages.map(load(_)))
   }
 
