@@ -3,8 +3,8 @@ package me.gladwell.peach
 import java.io.File
 import me.gladwell.peach.pages.PageWriter
 import me.gladwell.peach.pages.JSONPageWriter
-import me.gladwell.peach.pages.JSONPageLoader
 import me.gladwell.peach.pages.Page
+import me.gladwell.peach.pages.JSONPageLoader
 
 class PeachTree(source: File, target: File) {
   this: SiteGenerator with SiteLoader with PageWriter =>
@@ -14,7 +14,7 @@ class PeachTree(source: File, target: File) {
     generate(target, site)
   }
 
-  def create(page: String) = write(source, new Page(path = page))
+  def create(path: String) = write(source, path)
 
 }
 
@@ -22,6 +22,6 @@ object PeachTree {
   def apply(source: File, target: File) = new PeachTree(source, target)
                                                   with HtmlSiteGenerator
                                                   with FileSystemSiteLoader
-                                                  with JSONPageLoader
                                                   with JSONPageWriter
+                                                  with JSONPageLoader
 }

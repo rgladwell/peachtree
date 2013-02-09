@@ -3,17 +3,18 @@ package me.gladwell.peach.pages
 import java.io.File
 import java.io.FileWriter
 
-import sjson.json.Writes
-import sjson.json.JsonSerialization._
-import dispatch.json._
+import spray.json._
 
-import JSONPageProtocol._
+object JsonProtocol extends DefaultJsonProtocol {
+}
 
 trait JSONPageWriter extends PageWriter {
 
-  def write(outputDirectory: File, page: Page): Unit = {
-    val json = tojson[Page](page)
-    val pageFile = new File(outputDirectory, page.path + ".page")
+  import JsonProtocol._
+
+  def write(outputDirectory: File, path: String): Unit = {
+    val json = Map[String, String]().toJson
+    val pageFile = new File(outputDirectory, path + ".page")
     println("writing page to " + pageFile)
     val writer = new FileWriter(pageFile)
     writer.write(json.toString)

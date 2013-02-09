@@ -1,5 +1,7 @@
 package me.gladwell.peach.pages
 
-class Page(val path: String) {
+trait Page {
+
+  val path: String
 
 }

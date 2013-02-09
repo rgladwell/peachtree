@@ -10,6 +10,8 @@ organizationName := "Gladwell Consultants Ltd."
 
 version := "0.1-SNAPSHOT"
 
-libraryDependencies += "net.debasishg" %% "sjson" % "0.18"
+resolvers += "spray.io" at "http://repo.spray.io/"
+
+libraryDependencies += "io.spray" % "spray-json_2.9.2" % "1.2.3"
 
 ScriptedPlugin.scriptedSettings
