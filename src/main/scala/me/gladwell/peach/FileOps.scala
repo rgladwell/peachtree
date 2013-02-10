@@ -1,8 +1,8 @@
-package me.gladwell.peach.pages
+package me.gladwell.peach
 
 import java.io.File
 
-private class FileOps(file: File) {
+class FileOps(file: File) {
 
   def nameWithoutExtension(): String = {
     val filename = file.getName()

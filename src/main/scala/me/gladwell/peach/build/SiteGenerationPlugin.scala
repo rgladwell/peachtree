@@ -29,19 +29,18 @@ object SiteGenerationPlugin extends Plugin {
 
       pagesDirectory <<= peachSourceDirectory.apply(new File(_, "pages")),
 
-      generateSiteTask <<= (siteTitle, pagesDirectory, siteDirectory) map { (title, source, target) =>
+      generateSiteTask <<= (siteTitle, peachSourceDirectory, siteDirectory) map { (title, source, target) =>
         println("Generating Peach Tree template site... " + title)
         println("Generating Peach Tree template site in " + target)
 
-        createDirectory(source)
         createDirectory(target)
 
         PeachTree(source, target) generate new SiteInfo(title = title)
       },
 
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
-        (argTask, pagesDirectory, siteDirectory) map { (args: Seq[String], source, target) =>
-          createDirectory(source)
+        (argTask, peachSourceDirectory, siteDirectory, pagesDirectory) map { (args: Seq[String], source, target, pages) =>
+          createDirectory(pages)
           val page = args(0)
           val title = args.quotedArgs(1)
 

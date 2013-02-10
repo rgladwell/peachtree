@@ -8,5 +8,6 @@ $ exists src/main/peach/pages/page1.page
 $ exists src/main/peach/pages/page1.markdown
 > peach:generate-site
 $ exists target/peach/site/page1.html
-> assert-page-title page1 "PAGE1 TITLE"
+> assert-page-title page1 "PAGE1 TITLE - BLOG_TITLE"
 > assert-page-header page1 "PAGE1 TITLE"
+> assert-page-div page1 content

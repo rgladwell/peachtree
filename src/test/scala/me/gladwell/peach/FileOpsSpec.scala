@@ -1,4 +1,4 @@
-package me.gladwell.peach.pages
+package me.gladwell.peach
 
 import java.io.File
 

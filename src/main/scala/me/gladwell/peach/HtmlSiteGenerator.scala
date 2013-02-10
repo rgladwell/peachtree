@@ -1,29 +1,22 @@
 package me.gladwell.peach
 
 import java.io.File
-import scala.xml._
+import me.gladwell.peach.layout.Styler
+import java.io.FileWriter
 
 trait HtmlSiteGenerator extends SiteGenerator {
+  this: Styler =>
 
   def generate(output: File, site: Site): Unit = {
     for(page <- site.pages) {
       def file = new File(output, page.path + ".html")
 
-      val title = page.title match {
-        case Some(title) => title
-        case None => site.title
-      }
-
-      XML.save(file.getAbsolutePath(),
-        <html>
-          <head>
-            <title>{title}</title>
-          </head>
-          <body>
-            {page.content}
-          </body>
-        </html>
-      )
+      val layout = site.layouts(page.layout)
+      val writer = new FileWriter(file)
+      val styled = style(layout, page, site)
+      println("styled content = " + styled)
+      writer.write(styled)
+      writer.close()
     }
   }
 

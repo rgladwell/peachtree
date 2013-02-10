@@ -6,7 +6,9 @@ import scala.xml.Node
 
 import spray.json._
 
-private class JSONPage(file: File, val content: Node) extends Page {
+import me.gladwell.peach._
+
+private class JSONPage(file: File, val xml: Node) extends Page {
 
   import JsonProtocol._
 
@@ -14,6 +16,13 @@ private class JSONPage(file: File, val content: Node) extends Page {
 
   lazy val path = file.nameWithoutExtension()
 
-  lazy val title = (content find (_.text.nonEmpty)) map (_.text)
+  lazy val title = {
+    if(json.fields.contains("title")) json.fields("title").convertTo[String]
+    else null
+  }
+
+  lazy val layout = json.fields("layout").convertTo[String]
+
+  lazy val content = xml.toString
 
 }

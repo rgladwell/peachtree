@@ -7,12 +7,13 @@ trait FileSystemSiteLoader extends SiteLoader {
   this: PageLoader =>
 
   def load(info: SiteInfo, source: File): Site = {
-    val pages = for {
-      file <- source.listFiles()
-      if !file.isDirectory() && file.getName().endsWith(".page")
-    } yield file
+    val pages = source.findFiles(_.getName().endsWith(".page"))
 
-    new Site(title = info.title, pages = pages.map(load(_)))
+    val layouts = source.findFiles(_.getName().endsWith(".mustache")).map { f =>
+      f.nameWithoutExtension() -> f
+    }
+
+    new Site(title = info.title, pages = pages.map(load(_)), layouts.toMap)
   }
 
 }
