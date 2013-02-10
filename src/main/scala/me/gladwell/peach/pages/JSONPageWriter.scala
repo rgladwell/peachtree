@@ -5,9 +5,6 @@ import java.io.FileWriter
 
 import spray.json._
 
-object JsonProtocol extends DefaultJsonProtocol {
-}
-
 trait JSONPageWriter extends PageWriter {
 
   import JsonProtocol._
