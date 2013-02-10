@@ -5,6 +5,7 @@ import me.gladwell.peach.pages.PageWriter
 import me.gladwell.peach.pages.JSONPageWriter
 import me.gladwell.peach.pages.Page
 import me.gladwell.peach.pages.JSONPageLoader
+import me.gladwell.peach.pages.MarkdownPageContentLoader
 
 class PeachTree(source: File, target: File) {
   this: SiteGenerator with SiteLoader with PageWriter =>
@@ -24,4 +25,5 @@ object PeachTree {
                                                   with FileSystemSiteLoader
                                                   with JSONPageWriter
                                                   with JSONPageLoader
+                                                  with MarkdownPageContentLoader
 }

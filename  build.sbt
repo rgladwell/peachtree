@@ -14,6 +14,8 @@ resolvers += "spray.io" at "http://repo.spray.io/"
 
 libraryDependencies += "io.spray" % "spray-json_2.9.2" % "1.2.3"
 
+libraryDependencies += "com.tristanhunt" %% "knockoff" % "0.8.1"
+
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 
 ScriptedPlugin.scriptedSettings

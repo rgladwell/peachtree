@@ -1,12 +1,12 @@
 # should generate default index html file
 > peach:generate-site
-$ exists target/peach/site/
-$ exists target/peach/site/index.html
 > assert-page-title index BLOG_TITLE
 
 # should create new pages
 > peach:add-page page1 "PAGE1 TITLE"
 $ exists src/main/peach/pages/page1.page
+$ exists src/main/peach/pages/page1.markdown
 > peach:generate-site
 $ exists target/peach/site/page1.html
 > assert-page-title page1 "PAGE1 TITLE"
+> assert-page-header page1 "PAGE1 TITLE"

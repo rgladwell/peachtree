@@ -20,7 +20,7 @@ trait HtmlSiteGenerator extends SiteGenerator {
             <title>{title}</title>
           </head>
           <body>
-            <h1>{title}</h1>
+            {page.content}
           </body>
         </html>
       )

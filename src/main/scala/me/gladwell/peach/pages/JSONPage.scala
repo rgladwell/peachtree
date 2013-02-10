@@ -2,10 +2,11 @@ package me.gladwell.peach.pages
 
 import java.io.File
 import scala.io.Source
+import scala.xml.Node
 
 import spray.json._
 
-private class JSONPage(file: File) extends Page {
+private class JSONPage(file: File, val content: Node) extends Page {
 
   import JsonProtocol._
 
@@ -13,9 +14,6 @@ private class JSONPage(file: File) extends Page {
 
   lazy val path = file.nameWithoutExtension()
 
-  lazy val title = {
-    if(json.fields.contains("title")) json.fields("title").convertTo[Option[String]]
-    else None
-  }
+  lazy val title = (content find (_.text.nonEmpty)) map (_.text)
 
 }
