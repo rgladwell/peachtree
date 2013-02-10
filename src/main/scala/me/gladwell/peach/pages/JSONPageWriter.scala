@@ -12,12 +12,12 @@ trait JSONPageWriter extends PageWriter {
 
   import JsonProtocol._
 
-  def write(outputDirectory: File, path: String): Unit = {
-    val json = Map[String, String]().toJson
+  def write(outputDirectory: File, path: String, title: String): Unit = {
+    val json = Map[String, String]("title" -> title).toJson
     val pageFile = new File(outputDirectory, path + ".page")
     println("writing page to " + pageFile)
     val writer = new FileWriter(pageFile)
-    writer.write(json.toString)
+    writer.write(json.prettyPrint)
     writer.close()
   }
 

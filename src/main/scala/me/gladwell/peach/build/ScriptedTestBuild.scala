@@ -17,7 +17,7 @@ abstract class ScriptedTestBuild extends Build {
     assertPageTitleTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
         (argTask, target) map { (args: Seq[String], target) => {
           val path = args(0)
-          val expected = args(1)
+          val expected = args.quotedArgs(1)
           val file = target.getAbsolutePath() + "/peach/site/" + path + ".html"
           val actualTitle = (XML.loadFile(file) \\ "html" \ "head" \ "title").text
 

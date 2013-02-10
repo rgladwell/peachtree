@@ -14,7 +14,7 @@ class PeachTree(source: File, target: File) {
     generate(target, site)
   }
 
-  def create(path: String) = write(source, path)
+  def create(path: String, title: String) = write(source, path, title)
 
 }
 

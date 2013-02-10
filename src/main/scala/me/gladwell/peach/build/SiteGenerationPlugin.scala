@@ -42,13 +42,13 @@ object SiteGenerationPlugin extends Plugin {
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
         (argTask, pagesDirectory, siteDirectory) map { (args: Seq[String], source, target) =>
           createDirectory(source)
+          val page = args(0)
+          val title = args.quotedArgs(1)
 
           val peachTree = PeachTree(source, target)
 
-          args foreach (page => {
-            println("Creating page '" + page + "' in " + source)
-            peachTree create page
-          })
+          println("Creating page '" + page + "' in " + source)
+          peachTree create(page, title)
         }
       }
     )
