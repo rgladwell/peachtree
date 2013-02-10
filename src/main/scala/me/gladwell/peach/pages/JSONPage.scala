@@ -14,7 +14,7 @@ private class JSONPage(file: File) extends Page {
   lazy val path = file.nameWithoutExtension()
 
   lazy val title = {
-    if(json.fields.contains("title")) new Some[String] (json.fields("title").convertTo[String])
+    if(json.fields.contains("title")) json.fields("title").convertTo[Option[String]]
     else None
   }
 
