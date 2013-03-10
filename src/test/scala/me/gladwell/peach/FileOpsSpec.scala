@@ -11,7 +11,7 @@ class FileOpsSpec extends FlatSpec with ShouldMatchers {
     new File("/data/test.txt").nameWithoutExtension() should equal ("test")
   }
 
-  "FileOps" should "not change file name extension" in {
+  it should "not change file name extension" in {
     new File("/test").nameWithoutExtension() should equal ("test")
   }
 

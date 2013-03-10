@@ -4,7 +4,6 @@ import sbt._
 import sbt.IO.createDirectory
 import Keys._
 import me.gladwell.peach._
-import me.gladwell.peach.pages.JSONPageWriter
 
 object SiteGenerationPlugin extends Plugin {
 
@@ -29,25 +28,33 @@ object SiteGenerationPlugin extends Plugin {
 
       pagesDirectory <<= peachSourceDirectory.apply(new File(_, "pages")),
 
-      generateSiteTask <<= (siteTitle, peachSourceDirectory, siteDirectory) map { (title, source, target) =>
-        println("Generating Peach Tree template site... " + title)
-        println("Generating Peach Tree template site in " + target)
+      generateSiteTask <<= (siteTitle, peachSourceDirectory, siteDirectory) map {
+        (title, source, target) => {
+          println("Generating Peach Tree template site... " + title)
+          println("Generating Peach Tree template site in " + target)
 
-        createDirectory(target)
+          createDirectory(target)
 
-        PeachTree(source, target) generate new SiteInfo(title = title)
+          val monitor = new LoggingMonitor()
+
+          implicit object siteInfo extends SiteInfo {
+          }
+
+//          val op = PeachTree(source, target) generate site
+//          op(monitor)
+        }
       },
 
       addPageTask <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
-        (argTask, peachSourceDirectory, siteDirectory, pagesDirectory) map { (args: Seq[String], source, target, pages) =>
+        (argTask, peachSourceDirectory, siteDirectory, pagesDirectory, siteTitle) map { (args: Seq[String], source, target, pages, title) =>
           createDirectory(pages)
           val page = args(0)
           val title = args.quotedArgs(1)
 
-          val peachTree = PeachTree(source, target)
+//          val peachTree = PeachTree(source, target)
 
           println("Creating page '" + page + "' in " + source)
-          peachTree create(page, title)
+//          peachTree create(page, title)
         }
       }
     )

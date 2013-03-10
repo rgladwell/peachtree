@@ -1,6 +1,7 @@
 # should generate default index html file
 > peach:generate-site
 > assert-page-title index BLOG_TITLE
+> assert-page-header page1 "BLOG_TITLE"
 
 # should create new pages
 > peach:add-page page1 "PAGE1 TITLE"
