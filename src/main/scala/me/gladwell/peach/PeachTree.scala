@@ -7,5 +7,5 @@ class PeachTree {
 }
 
 object PeachTree {
-  def apply() (implicit site: SiteInfo) = new PeachTree()
+  def apply() = new PeachTree()
 }

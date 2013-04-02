@@ -32,16 +32,6 @@ object SiteGenerationPlugin extends Plugin {
         (title, source, target) => {
           println("Generating Peach Tree template site... " + title)
           println("Generating Peach Tree template site in " + target)
-
-          createDirectory(target)
-
-          val monitor = new LoggingMonitor()
-
-          implicit object siteInfo extends SiteInfo {
-          }
-
-//          val op = PeachTree(source, target) generate site
-//          op(monitor)
         }
       },
 
@@ -50,11 +40,6 @@ object SiteGenerationPlugin extends Plugin {
           createDirectory(pages)
           val page = args(0)
           val title = args.quotedArgs(1)
-
-//          val peachTree = PeachTree(source, target)
-
-          println("Creating page '" + page + "' in " + source)
-//          peachTree create(page, title)
         }
       }
     )
