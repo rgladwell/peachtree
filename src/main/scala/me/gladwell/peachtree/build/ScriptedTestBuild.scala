@@ -1,4 +1,4 @@
-package me.gladwell.peach.build
+package me.gladwell.peachtree.build
 
 import java.io.File
 import scala.collection.Seq

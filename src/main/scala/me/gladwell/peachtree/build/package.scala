@@ -1,4 +1,4 @@
-package me.gladwell.peach
+package me.gladwell.peachtree
 
 package object build {
 

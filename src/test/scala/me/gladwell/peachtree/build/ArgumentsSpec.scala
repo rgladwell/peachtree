@@ -1,4 +1,4 @@
-package me.gladwell.peach.build
+package me.gladwell.peachtree.build
 
 import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers

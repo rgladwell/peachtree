@@ -1,4 +1,4 @@
-import me.gladwell.peach.build.ScriptedTestBuild
+import me.gladwell.peachtree.build.ScriptedTestBuild
 import sbt._
 import sbt.Keys._
 

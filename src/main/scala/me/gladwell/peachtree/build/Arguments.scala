@@ -1,6 +1,6 @@
-package me.gladwell.peach.build
+package me.gladwell.peachtree.build
 
-private class Arguments(args: Seq[String]) {
+class Arguments(args: Seq[String]) {
 
   def quotedArgs: Seq[String] = args match {
     case Nil => args

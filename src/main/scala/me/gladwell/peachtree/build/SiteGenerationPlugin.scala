@@ -1,9 +1,9 @@
-package me.gladwell.peach.build
+package me.gladwell.peachtree.build
 
 import sbt._
 import sbt.IO.createDirectory
 import Keys._
-import me.gladwell.peach._
+import me.gladwell.peachtree._
 
 object SiteGenerationPlugin extends Plugin {
 
