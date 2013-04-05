@@ -20,3 +20,6 @@ bin
 
 # Unix
 *~
+
+# Mac OS X
+.DS_Store
