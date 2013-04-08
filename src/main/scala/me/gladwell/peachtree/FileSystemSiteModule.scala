@@ -1,12 +1,20 @@
 package me.gladwell.peachtree
 
 import java.io.File
+import scala.io.Source
 
-trait FileSystemSiteModule extends SiteModule[Folder, File] {
-  this: PageModule[File] =>
+trait FileSystemSiteModule extends SiteModule[Folder] {
+  this: PageModule =>
 
   class MustacheSiteLoader extends SiteLoader[Folder] {
-    def load(source: Folder): Site = new Site(pages = source.files().map(pageLoader.load(_)).flatten)
+
+    def load(source: Folder): Site = new Site(pages = findPages(source))
+
+    private def findPages(source: Folder) = {
+      for (
+        file <- source.files() if validPage(file)
+      ) yield pageLoader.load(Source.fromFile(file))
+    }
   }
 
   def siteLoader() = new MustacheSiteLoader

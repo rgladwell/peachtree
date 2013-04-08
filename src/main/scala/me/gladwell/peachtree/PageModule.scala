@@ -1,12 +1,19 @@
 package me.gladwell.peachtree
 
-trait PageModule[T] {
+import java.io.File
+import scala.io.Source
 
-  trait Page
+trait PageModule {
+
+  trait Page {
+    val content: String
+  }
 
   trait PageLoader {
-    def load(source: T): Option[Page]
+    def load(source: Source): Page
   }
+
+  def validPage(file: File): Boolean
 
   def pageLoader: PageLoader
 

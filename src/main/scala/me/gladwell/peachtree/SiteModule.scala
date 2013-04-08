@@ -1,7 +1,7 @@
 package me.gladwell.peachtree
 
-trait SiteModule[T, S] {
-  this: PageModule[S] =>
+trait SiteModule[T] {
+  this: PageModule =>
 
   class Site(val pages: Seq[Page])
 
