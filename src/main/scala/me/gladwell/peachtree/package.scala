@@ -8,4 +8,6 @@ package object peachtree {
 
   private[peachtree] implicit def fileToFolder(file: File) = new Folder(file)
 
+  object peachtree extends FileSystemSiteModule with MustachePageModule
+
 }
