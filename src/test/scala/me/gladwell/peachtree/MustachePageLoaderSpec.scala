@@ -22,7 +22,7 @@ test-content"""
 
   it should "read layout from YAML front matter" in {
     val source = new BufferedSource(new StringBufferInputStream(template))
-    module.pageLoader.load(source).layout should equal (Some("layout-content"))
+    module.pageLoader.load(source).layout should equal (Some("test-layout"))
   }
 
 }

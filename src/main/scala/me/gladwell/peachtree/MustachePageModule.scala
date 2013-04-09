@@ -7,6 +7,7 @@ import java.io.Writer
 import scala.io.Source
 import org.monkey.mustache._
 import java.io.BufferedReader
+import org.yaml.snakeyaml.Yaml
 
 trait MustachePageModule extends PageModule {
 
@@ -38,8 +39,13 @@ trait MustachePageModule extends PageModule {
     new Template(frontMatter = parseYamlFrontMatter(sb.toString), content = new Mustache(source)(Dictionary()))
   }
 
-  private def parseYamlFrontMatter(unparsed: String): Map[String,String] = {
-    Map()
+  private def parseYamlFrontMatter(yaml: String): Map[String,String] = {
+    import scala.collection.JavaConversions._
+    val yamlLoader = new Yaml
+    yamlLoader.load(yaml) match {
+      case map: java.util.Map[String, String] => map.toMap
+      case _ => throw new ClassCastException
+    }
   }
 
   class MustachePage(private val template: Template) extends Page {

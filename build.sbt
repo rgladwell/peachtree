@@ -18,6 +18,8 @@ resolvers += "monkey.org" at "http://monkey.org/~marius/maven"
 
 libraryDependencies += "org.monkey" % "mustache" % "1.0.3"
 
+libraryDependencies += "org.yaml" % "snakeyaml" % "1.12"
+
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 
 libraryDependencies += "org.scalamock" %% "scalamock-scalatest-support" % "2.4" % "test"
