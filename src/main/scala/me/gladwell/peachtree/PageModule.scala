@@ -6,7 +6,8 @@ import scala.io.Source
 trait PageModule {
 
   trait Page {
-    val content: String
+    def content: String
+    def layout: Option[String]
   }
 
   trait PageLoader {
