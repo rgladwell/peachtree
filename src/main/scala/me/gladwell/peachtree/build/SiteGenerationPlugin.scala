@@ -32,6 +32,8 @@ object SiteGenerationPlugin extends Plugin {
         (title, source, target) => {
           println("Generating Peach Tree template site... " + title)
           println("Generating Peach Tree template site in " + target)
+          println("Generating Peach Tree template site from  " + source)
+          peachtree.siteLoader.load(source)
         }
       },
 
