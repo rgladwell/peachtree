@@ -10,8 +10,6 @@ organizationName := "Gladwell Consultants Ltd."
 
 version := "0.1-SNAPSHOT"
 
-libraryDependencies += "com.propensive" % "rapture-io" % "0.7.2"
-
 libraryDependencies += "com.tristanhunt" %% "knockoff" % "0.8.1"
 
 resolvers += "monkey.org" at "http://monkey.org/~marius/maven"
