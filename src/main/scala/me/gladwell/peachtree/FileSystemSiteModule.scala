@@ -8,7 +8,7 @@ trait FileSystemSiteModule extends SiteModule[Folder] {
 
   class MustacheSiteLoader extends SiteLoader[Folder] {
 
-    def load(source: Folder): Site = new Site(pages = findPages(source))
+    def load(source: Folder): Site = new Site(pages = findPages(source).toList)
 
     private def findPages(source: Folder) = {
       for (
