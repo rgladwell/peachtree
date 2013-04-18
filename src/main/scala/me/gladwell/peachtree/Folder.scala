@@ -4,7 +4,7 @@ import java.io.File
 
 class Folder(folder: File) {
 
-  assert(folder.isDirectory())
+  assert (folder isDirectory)
 
   def files(): Seq[File] = findFiles((file) => true)
 
