@@ -28,11 +28,9 @@ object SiteGenerationPlugin extends Plugin {
 
       pagesDirectory <<= peachSourceDirectory.apply(new File(_, "pages")),
 
-      generateSiteTask <<= (siteTitle, peachSourceDirectory, siteDirectory) map {
-        (title, source, target) => {
-          println("Generating Peach Tree template site... " + title)
-          println("Generating Peach Tree template site in " + target)
-          println("Generating Peach Tree template site from  " + source)
+      generateSiteTask <<= (siteTitle, peachSourceDirectory, siteDirectory, streams) map {
+        (title, source, target, s) => {
+          s.log.info("generating site '" + title + "' from [" + source + "]")
           peachtree.siteLoader.load(source)
         }
       },
