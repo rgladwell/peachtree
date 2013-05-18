@@ -51,7 +51,7 @@ trait MustachePageModule extends PageModule {
 
   class MustachePage(private val template: Template) extends Page {
     def content = template.content
-    def layout = Some(template.frontMatter("layout"))
+    def layout = template.frontMatter.get("layout")
   }
 
   class MustachePageLoader extends PageLoader {

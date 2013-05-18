@@ -33,4 +33,9 @@ test-content"""
     module.pageLoader.load(source).content should equal ("test-content")
   }
 
+  it should "not read layout without YAML front matter" in {
+    val source = new BufferedSource(new StringBufferInputStream(templateWithoutFrontmatter))
+    module.pageLoader.load(source).layout should equal (None)
+  }
+
 }
