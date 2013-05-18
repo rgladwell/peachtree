@@ -24,19 +24,20 @@ trait MustachePageModule extends PageModule {
     val lines = source.getLines
     var line = lines.next
     while (line.isEmpty) line = lines.next
+
     if (!isDeliminator(line)) {
-      throw new IllegalArgumentException("No YAML Front Matter");
+    	new Template(frontMatter = Map(), content = new Mustache(line ++ source)(Dictionary()))
+    } else {
+        val sb = new StringBuilder();
+	    line = lines.next
+	    while (!isDeliminator(line)) {
+	        sb.append(line);
+	        sb.append("\n");
+	        line = lines.next
+	    }
+	    new Template(frontMatter = parseYamlFrontMatter(sb.toString), content = new Mustache(source)(Dictionary()))
     }
 
-    val sb = new StringBuilder();
-    line = lines.next
-    while (!isDeliminator(line)) {
-        sb.append(line);
-        sb.append("\n");
-        line = lines.next
-    }
-
-    new Template(frontMatter = parseYamlFrontMatter(sb.toString), content = new Mustache(source)(Dictionary()))
   }
 
   private def parseYamlFrontMatter(yaml: String): Map[String,String] = {
